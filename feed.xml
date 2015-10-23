@@ -3,25 +3,25 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>nlv</title>
-        <link>http://nlv.github.io</link>
+        <link>http://nlv.github.io/blog</link>
         <description><![CDATA[Личный блог Никитина Льва (Омск)]]></description>
-        <atom:link href="http://nlv.github.io/feed.xml" rel="self"
+        <atom:link href="http://nlv.github.io/blog/feed.xml" rel="self"
                    type="application/rss+xml" />
         <lastBuildDate>Fri, 23 Oct 2015 00:00:00 UT</lastBuildDate>
         <item>
     <title>Способы внесения простых правок в PDF документы</title>
-    <link>http://nlv.github.io/posts/it/2015/10/23/pdfmod.html</link>
+    <link>http://nlv.github.io/blog/posts/it/2015/10/23/pdfmod.html</link>
     <description><![CDATA[]]></description>
     <pubDate>Fri, 23 Oct 2015 00:00:00 UT</pubDate>
-    <guid>http://nlv.github.io/posts/it/2015/10/23/pdfmod.html</guid>
+    <guid>http://nlv.github.io/blog/posts/it/2015/10/23/pdfmod.html</guid>
     <dc:creator>Никитин Лев</dc:creator>
 </item>
 <item>
     <title>Утилиты конвертирования и видеомонтажа под linux</title>
-    <link>http://nlv.github.io/posts/it/2015/10/17/videoconvert-linux.html</link>
+    <link>http://nlv.github.io/blog/posts/it/2015/10/17/videoconvert-linux.html</link>
     <description><![CDATA[]]></description>
     <pubDate>Sat, 17 Oct 2015 00:00:00 UT</pubDate>
-    <guid>http://nlv.github.io/posts/it/2015/10/17/videoconvert-linux.html</guid>
+    <guid>http://nlv.github.io/blog/posts/it/2015/10/17/videoconvert-linux.html</guid>
     <dc:creator>Никитин Лев</dc:creator>
 </item>
 
