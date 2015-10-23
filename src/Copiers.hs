@@ -1,7 +1,7 @@
 {-
     Модуль копировщиков.
-    https://github.com/ruHaskell/ruhaskell
-    Все права принадлежат русскоязычному сообществу Haskell-разработчиков, 2015 г.
+    https://github.com/nlv/blog
+    Все права принадлежат Никитину Льву
 -}
 
 {-# LANGUAGE OverloadedStrings #-}
