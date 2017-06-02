@@ -30,6 +30,7 @@ executable nlvGithub
                        IndexPage
                        Links
                        Misc
+                       MailingList
 
   other-extensions:    OverloadedStrings
 

@@ -1,13 +1,26 @@
 <ul class="post-list">
     $for(posts)$
-        <li>
-            <div class="post-title">
-                <span class="name-of-category">$postCategory$</span><a href="$url$">$title$</a>
-                <span class="fa fa-comments post-comments"></span><a href="$url$#disqus_thread" class="comments-link">К</a>
-            </div>
-            <div class="post-date">
-                $date$
-            </div>
-        </li>
+          <article class="teaser">
+            <header>
+              <figure>
+                <img src="$teaserPhoto$" alt="$teaserPhotoAlt$"/>
+              </figure>
+              <hgroup>
+                <h1><a href="$url$">$title$</a></h1>
+                <h2>
+                  $teaserText$
+                </h2>
+              </hgroup>
+            </header>
+            <footer>
+              <time datetime="2016-12-08">8 декабря 2016</time>
+              <ul class="keywords">
+                <li>Кассин О.Ю.</li>
+                <li><a href="sovet_kultury_2016.html">Заседание Совета по Культуре</a></li>
+                <li>Рок-опера</li>
+                <li>Народный Собор</li>
+              </ul>
+            </footer>
+          </article>
     $endfor$
 </ul>

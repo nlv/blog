@@ -53,4 +53,3 @@ createPosts = do
               >>= loadAndApplyTemplate "templates/default.html" (postContext tagsAndAuthors)
               >>= relativizeUrls
     return ()
-

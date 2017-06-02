@@ -32,7 +32,8 @@ import Hakyll
 main :: IO ()
 main = hakyll $ do
     justCopy            "files/**"
-    justCopy            "static/images/*"
+    justCopy            "photos/**"
+    justCopy            "static/images/**"
     justCompressAndCopy "static/css/*"
     justCopy            "README.md"
     justCopy            "CNAME"
@@ -59,4 +60,3 @@ main = hakyll $ do
                 >> createIndexPage
                 >> createMailingListFrontend
                 >> createPageWithExternalLinks) [tags, categories, authors]
-
