@@ -1,26 +1,90 @@
-<h1>$title$</h1>
 
-<div class="row">
-    <div class="col-xs-9 col-sm-8 col-md-8 col-lg-8">
-        <div class="post-info">
-            <strong>let</strong> author&nbsp;&nbsp;&nbsp;= "$postAuthor$"<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= fromGregorian $haskellDate$<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;category = "$postCategory$"<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= [$postTags$]
-        </div>
-    </div>
+      <aside>
+        <section>
+          <ul>
+            <li>
+              <p>
+                <a href="files/kassin.doc">
+                  <img class="icon" src="/static/images/icons/microsoft_word_logo-150x150.jpg"/>
+                  Скачать печатную версию
+                </a>
+              </p>
+            </li>
+        </ul>
+        </section>
 
-    <div class="col-xs-3 col-sm-4 col-md-4 col-lg-4">
-        $if(hrefToOriginal)$
-            <div class="href-to-original">
-                <a href="$hrefToOriginal$" target="_blank">Оригинал <span class="fa fa-external-link"></span></a>
-            </div>
-        $endif$
-    </div>
-</div>
+        <section>
+          <header>
+            <h1>Поделиться</h1>
+          </header>
+          <ul class="inline">
+            <li><a href="https://vk.com/superomsk"><img class="icon" src="/static/images/icons/vk.png" alt="vk" /></a></li>
+            <li><a href="https://www.facebook.com/РИА-СуперОмск-210404555681577/"><img class="icon" src="/static/images/icons/fb.png" alt="fb" /></a></li>
+            <li><a href="http://ok.ru/superomsk"><img class="icon" src="/static/images/icons/ok.png" alt="ok" /></a></li>
+            <li><a href="https://twitter.com/SuperOmsk"><img class="icon" src="/static/images/icons/tw.png" alt="tw" /></a></li>
+            <li><a href="https://twitter.com/SuperOmsk"><img class="icon" src="/static/images/icons/g.png" alt="google" /></a></li>
+            <li><a href="https://twitter.com/SuperOmsk"><img class="icon" src="/static/images/icons/ya.png" alt="yandex" /></a></li>
+          </ul>
+        </section>
 
-$body$
+        <section>
+          <header>
+            <h1>Поделиться</h1>
+          </header>
+          <ul>
+            <li><p>
+              <img class="icon" src="/static/images/icons/external_link.png"/>
+              <a href="sovet_kultury_2016.html">Заседание Совета Культуры</a>
+            </p></li>
+            <li><p>
+              <img class="icon" src="/static/images/icons/internal_link.jpg"/>
+              <a href="#">Текст рок-оперы</a>
+            </p></li>
+            <li><p>
+              <img class="icon" src="/static/images/icons/external_link.png"/>
+              <a href="#">Интервью Тима Райса</a>
+            </p></li>
+          </ul>
+        </section>
 
+        <section>
+          <header>
+            <h1>Метки</h1>
+          </header>
+          $postTags$
+        </section>
+
+      </aside>
+
+      <main id="main-content" class="post-article">
+        <article>
+          <header>
+            <hgroup>
+              <h1>$title$</h1>
+              <h2>$teaserText$</h2>
+            </hgroup>
+            <time datetime="$haskellDate$">$date$</time>
+            <author>$author$</author>
+          </header>
+          <main>
+            $body$
+          </main>
+          <!--
+          <footer>
+            <h1>Наша справка:</h1>
+            <p>
+            Олег Юрьевич Кассин – сопредседатель Общероссийского общественного движения «Народный Собор», директор Межрегиональной общественной правозащитной организации «Центр народной защиты», Координатор Общественного координационного центра в защиту Веры и традиционных духовно-нравственных ценностей «Православное гражданское действие».
+            </p>
+          </footer>
+        -->
+        </article>
+      </main>
+
+      <aside>
+      </aside>
+
+
+      <!--
 <div id="socialButtons">
     <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
@@ -40,5 +104,4 @@ $body$
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-    
+-->

@@ -409,7 +409,7 @@ blockquote.poem
 }
 
 
-#main-content figure.citation
+.post-article figure.citation
 {
   line-height      : 1.5em;
   font-size        : 1.19999em;
@@ -424,24 +424,24 @@ blockquote.poem
   background-color : #d3d3d3;
 }
 
-#main-content figure.citation > blockquote
+.post-article figure.citation > blockquote
 {
   text-align : justify;
 }
 
-#main-content figure.citation > blockquote p:first-child
+.post-article figure.citation > blockquote p:first-child
 {
   margin-top : 0px;
 }
 
-#main-content figure.citation > figcaption
+.post-article figure.citation > figcaption
 {
   margin-top  : 1em;
   text-align  : end;
   font-weight : bold;
 }
 
-#main-content
+.post-article
 {
   max-width   : 700px;
   width       : 60%;
@@ -449,7 +449,7 @@ blockquote.poem
   line-height : 1.5em;
 }
 
-#main-content h1
+.post-article h1
 {
   font-weight : bold;
   font-size   : 1.5em;
@@ -457,7 +457,7 @@ blockquote.poem
   line-height : 1.1em;
 }
 
-#main-content h2
+.post-article h2
 {
   text-align : justify;
   font-size  : 1.1em;
@@ -465,31 +465,31 @@ blockquote.poem
   margin     : 1em auto 1em auto;
 }
 
-#main-content p
+.post-article p
 {
   margin     : 1em auto 1em auto;
   text-align : justify;
 }
 
-#main-content p.question
+.post-article p.question
 {
   font-weight : bold;
   font-style  : italic;
 }
 
-#main-content em
+.post-article em
 {
   font-style  : italic;
   font-family : "Bad Script", serif;
 }
 
-#main-content figure
+.post-article figure
 {
   margin : 1em -2em 1em -2em;
 }
 
 
-#main-content figure img
+.post-article figure img
 {
   width  : 100%;
   height : auto;
