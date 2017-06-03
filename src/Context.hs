@@ -40,15 +40,13 @@ simpleRenderQuottedLink :: String
                         -> Maybe FilePath
                         -> Maybe H.Html
 simpleRenderQuottedLink tag = fmap $ \filePath -> -- Формируем тег <a href...>
-    let rawHref = H.a ! A.href (toValue $ toUrl filePath) $ toHtml tag
-        quote = toHtml ("\"" :: String)
-    in quote >> rawHref >> quote
+    H.li $ H.a ! A.href (toValue $ toUrl filePath) $ toHtml tag
 
 -- Превращает имя ссылки в ссылку, ведущую к списку статей данного автора.
 quottedTagField :: String
                 -> Tags
                 -> Context a
-quottedTagField = tagsFieldWith getTags simpleRenderQuottedLink (mconcat . intersperse ", ")
+quottedTagField = tagsFieldWith getTags simpleRenderQuottedLink ((H.ul ! A.class_ "keywords"). mconcat . intersperse " ")
 
 -- Формируем ссылку, конвертируя "родное файловое" имя категории в русскоязычный аналог...
 simpleRenderLinkForRussianCategory :: String
@@ -87,7 +85,7 @@ ruTimeLocale =  TimeLocale { wDays  = []
 postContext :: TagsAndAuthors -> Context String
 postContext tagsAndAuthors = mconcat [ constField "host" aHost
                                      , dateFieldWith ruTimeLocale "date" "%d %B %Y"
-                                     , dateFieldWith ruTimeLocale "haskellDate" "%Y %b %d"
+                                     , dateFieldWith ruTimeLocale "haskellDate" "%Y-%m-%d"
                                      , dateField "issuePubDateInRFC2822" "%a, %_d %b %Y %H:%M:%S +0300"
                                      , quottedTagField "postTags" $ head tagsAndAuthors
                                      , categoryFieldInRussian "postCategory" $ tagsAndAuthors !! 1
