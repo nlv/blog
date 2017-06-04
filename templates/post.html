@@ -34,18 +34,12 @@
             <h1>Поделиться</h1>
           </header>
           <ul>
+            $if(hrefOrigin)$
             <li><p>
               <img class="icon" src="/static/images/icons/external_link.png"/>
-              <a href="sovet_kultury_2016.html">Заседание Совета Культуры</a>
+              <a href="$hrefOrigin$" target="_blank">Оригинальная публикация</a>
             </p></li>
-            <li><p>
-              <img class="icon" src="/static/images/icons/internal_link.jpg"/>
-              <a href="#">Текст рок-оперы</a>
-            </p></li>
-            <li><p>
-              <img class="icon" src="/static/images/icons/external_link.png"/>
-              <a href="#">Интервью Тима Райса</a>
-            </p></li>
+            $endif$
           </ul>
         </section>
 
