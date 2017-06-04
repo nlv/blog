@@ -1,17 +1,19 @@
 
       <aside>
-        <section>
-          <ul>
-            <li>
-              <p>
-                <a href="files/kassin.doc">
-                  <img class="icon" src="/static/images/icons/microsoft_word_logo-150x150.jpg"/>
-                  Скачать печатную версию
-                </a>
-              </p>
-            </li>
-        </ul>
-        </section>
+        $if(printed)$
+          <section>
+            <ul>
+              <li>
+                <p>
+                  <a href="$printedUrl$">
+                    <img class="icon" src="/static/images/icons/microsoft_word_logo-150x150.jpg"/>
+                    Скачать печатную версию
+                  </a>
+                </p>
+              </li>
+          </ul>
+          </section>
+        $endif$
 
         <section>
           <header>

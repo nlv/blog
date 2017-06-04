@@ -3,8 +3,9 @@ author:         Никитин Лев
 title:          Утилиты конвертирования и видеомонтажа под linux
 tags:           видеообработка, linux, видеомонтаж
 teaserText:     Рассказывается о полезных утилитах для работы с видео в linux
-teaserPhoto:    photos/openshot.png
+teaserPhoto:    /photos/openshot.png
 teaserPhotoAlt: Openshot
+printed: 
 ---
 
 ## Видеомонтаж - утилита openshot

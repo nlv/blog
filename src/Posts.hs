@@ -7,13 +7,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Posts (
-    createPosts
+    createPosts,
+    copyPrinted,
+    createPostsDocx
 ) where
 
 import Data.List.Split      (splitOn)
 import Data.List            (intersperse)
-import System.FilePath      (splitExtension)
-import Context              (postContext)
+import Context              (postContext, directorizedDatePath)
 import Misc                 (TagsReader)
 import Control.Monad.Reader
 import Hakyll
@@ -22,15 +23,9 @@ import Hakyll
 
 -- Дата публикации будет отражена в URL в виде подкаталогов.
 directorizeDate :: Routes
-directorizeDate = customRoute (\i -> directorize $ toFilePath i)
-    where
-        directorize path = dirs
-            where
-                (dirs, _) = splitExtension $
-                            concat $
-                            (intersperse "/" date) ++ ["/"] ++ (intersperse "-" rest)
-                minusBetweenDateAndTitle = 3
-                (date, rest) = splitAt minusBetweenDateAndTitle $ splitOn "-" path
+directorizeDate = customRoute (\i -> directorizedDatePath $ toFilePath i)
+
+
 
 
 -- like pandocCompiler, but uses hscolour for highlighting haskell code
@@ -53,3 +48,23 @@ createPosts = do
               >>= loadAndApplyTemplate "templates/default.html" (postContext tagsAndAuthors)
               >>= relativizeUrls
     return ()
+
+copyPrinted :: TagsReader
+copyPrinted = do
+    lift $ match "printed/**" $ do
+        route $ directorizeDate
+        compile copyFileCompiler
+    return ()
+
+createPostsDocx :: TagsReader
+createPostsDocx = return ()
+{-
+createPostsDocx = do
+    lift $ match "posts/**" $ version "docx" $ do
+        route $ directorizeDate `composeRoutes`
+                setExtension "docx"
+        compile $ getResourceString >>=
+          withItemBody (unixFilter "2docx.sh" [])
+        --compile $ pandocCompileraWidth def def {Stand}
+    return ()
+-}

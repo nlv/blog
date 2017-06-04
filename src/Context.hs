@@ -7,16 +7,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Context (
-    postContext
+    postContext, directorizedDatePath
 ) where
 
 import Data.List        (intersperse)
+import Data.List.Split  (splitOn)
 import Data.Time        (TimeLocale(..))
 import Misc             (aHost,
                          TagsAndAuthors,
                          getNameOfAuthor,
                          getRussianNameOfCategory)
-import System.FilePath  (takeBaseName, takeDirectory)
+import System.FilePath  (takeBaseName, takeDirectory, (<.>), (-<.>), (</>), splitExtension, splitPath)
 
 import qualified Text.Blaze.Html5               as H
 import qualified Text.Blaze.Html5.Attributes    as A
@@ -91,5 +92,19 @@ postContext tagsAndAuthors = mconcat [ constField "host" aHost
                                      , categoryFieldInRussian "postCategory" $ tagsAndAuthors !! 1
                                      , authorField "postAuthor" $ tagsAndAuthors !! 2
                                      --, constField "teaser" "content"
+                                     , field "printedUrl"
+                                         -- FIXME: разобраться с установкой расширения и переключением на printed
+                                         (return . replacePostOnPrinted . (-<.> "docx") . directorizedDatePath . toFilePath . itemIdentifier)
                                      , defaultContext
                                      ]
+                  where replacePostOnPrinted path = "/" </> concat (replace $ splitPath path)
+                            where replace = map (\p -> if p == "posts/" then "printed/" else p)
+
+directorizedDatePath :: FilePath -> FilePath
+directorizedDatePath path = dirs <.> ext
+            where
+                (dirs, ext) = splitExtension $
+                                concat $
+                                (intersperse "/" date) ++ ["/"] ++ (intersperse "-" rest)
+                minusBetweenDateAndTitle = 3
+                (date, rest) = splitAt minusBetweenDateAndTitle $ splitOn "-" path

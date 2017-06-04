@@ -10,7 +10,7 @@ module Main where
 
 import Copiers              (justCopy, justCreateAndCopy, justCompressAndCopy)
 import RSSFeed              (setupRSSFeed)
-import Posts                (createPosts)
+import Posts                (createPosts, copyPrinted, createPostsDocx)
 import Tags                 (createPageWithAllTags,
                              createPageWithAllCategories,
                              createPageWithAllAuthors,
@@ -48,6 +48,8 @@ main = hakyll $ do
 
     -- Теги и имена авторов нужны всем, поэтому для удобства запускаем читателя.
     runReaderT (createPosts
+                >> copyPrinted
+                >> createPostsDocx
                 >> createPageWithAllPosts
                 >> createPageWithAllTags
                 >> createPageWithAllCategories

@@ -42,21 +42,8 @@ getNameOfAuthor identifier = do
 -- Имена категорий извлекаются из файлового пути, поэтому они всегда английские.
 -- Это не красиво, поэтому мы формируем словарь русских имён для категорий.
 russianNamesOfCategories :: M.Map String String
-russianNamesOfCategories = M.fromList[ ("algorithms", "Алгоритмы")
-                                     , ("cast",       "Подкаст")
-                                     , ("dynamic",    "Динамика")
-                                     , ("elm",        "Elm")
-                                     , ("events",     "События")
-                                     , ("frp",        "FRP")
-                                     , ("gui",        "GUI")
-                                     , ("packages",   "Пакеты")
-                                     , ("projects",   "Проекты")
-                                     , ("talks",      "Выступления")
-                                     , ("tasks",      "Задачи")
-                                     , ("theory",     "Теория")
-                                     , ("typesystem", "Система типов")
-                                     , ("utils",      "Утилиты")
-                                     , ("web",        "Веб")
+russianNamesOfCategories = M.fromList[
+                                       ("prolife_citations", "Цитаты известных людей против абортов")
                                      , ("it",         "Информационные технологии")
                                      ]
 
