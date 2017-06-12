@@ -20,6 +20,7 @@ module Tags (
 
 ) where
 
+import System.FilePath  ((</>))
 import Data.List            (intercalate, isInfixOf, nub)
 import qualified  Data.Map as M
 import Context              (postContext)
@@ -202,11 +203,13 @@ convertSpecificTagsToLinks tagsAndAuthors specificTags aTitle =
     tagsRules specificTags $ \tag pattern -> do
         let nameOfTag = if "категории" `isInfixOf` aTitle then getRussianNameOfCategory tag else tag
             title = renderHtml $ H.preEscapedToHtml $ aTitle ++ " " ++ nameOfTag
+            [tags, categories, authors] = tagsAndAuthors
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll pattern
             let taggedPostsContext = mconcat [ listField "posts" (postContext tagsAndAuthors) (return posts)
                                              , constField "title" title
+                                             , constField "categories" (showCategorised categories tags)
                                              , defaultContext
                                              ]
 
@@ -259,5 +262,5 @@ showCategorised categories tags = concat (map showCategorised' cats)
         showCategorised' :: (String, [String]) -> String
         showCategorised' (cat, tags) = renderHtml $ do
             H.li $ do
-              H.p $ H.a ! A.href (toValue $ toFilePath $ cat2Id cat) $ H.preEscapedToHtml $ getRussianNameOfCategory cat
-              H.ul $ mapM_ (\t -> H.li $ H.a ! A.href (toValue $toFilePath $ tag2Id t) $ H.preEscapedToHtml t) tags
+              H.p $ H.a ! A.href (toValue $ "/" </> (toFilePath $ cat2Id cat)) $ H.preEscapedToHtml $ getRussianNameOfCategory cat
+              H.ul $ mapM_ (\t -> H.li $ H.a ! A.href (toValue $ "/" </> (toFilePath $ tag2Id t)) $ H.preEscapedToHtml t) tags

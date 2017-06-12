@@ -32,8 +32,8 @@ createIndexPage = do
             last7Posts <- fmap (take 7) . recentFirst =<< loadAll "posts/**"
             let indexContext = mconcat [ listField "posts" (postContext tagsAndAuthors) (return last7Posts)
                                        , constField "title" "Личный блог Льва Никитина"
-                                       , defaultContext
                                        , constField "categories" (showCategorised categories tags)
+                                       , defaultContext
                                        ]
 
             makeItem "" >>= loadAndApplyTemplate "templates/index.html" indexContext
