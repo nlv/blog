@@ -33,7 +33,7 @@ createIndexPage = do
             let indexContext = mconcat [ listField "posts" (postContext tagsAndAuthors) (return last7Posts)
                                        , constField "title" "Личный блог Льва Никитина"
                                        , defaultContext
-                                       , constField "categories" (showCategorised (tagsMakeId categories) (tagsMakeId tags) categories tags)
+                                       , constField "categories" (showCategorised categories tags)
                                        ]
 
             makeItem "" >>= loadAndApplyTemplate "templates/index.html" indexContext

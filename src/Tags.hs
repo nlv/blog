@@ -251,9 +251,11 @@ categorisedTags cats tags = map (\(c, is) -> (c, nub $ concat $ step' is)) (tags
         step' :: [Identifier] -> [[String]]
         step' = nub . map ((maybe [] id) . (flip lookup $ rtags))
 
-showCategorised :: (String -> Identifier) -> (String -> Identifier) -> Tags -> Tags -> String
-showCategorised cat2Id tag2Id categories tags = concat (map showCategorised' cats)
+showCategorised :: Tags -> Tags -> String
+showCategorised categories tags = concat (map showCategorised' cats)
   where cats = categorisedTags categories tags
+        cat2Id = tagsMakeId categories
+        tag2Id = tagsMakeId tags
         showCategorised' :: (String, [String]) -> String
         showCategorised' (cat, tags) = renderHtml $ do
             H.li $ do
