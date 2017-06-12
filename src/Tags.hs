@@ -15,10 +15,12 @@ module Tags (
     createPageWithAllCategories,
     convertTagsToLinks,
     convertCategoriesToLinks,
-    convertAuthorsToLinks
+    convertAuthorsToLinks,
+    categorisedTags
 ) where
 
-import Data.List            (intercalate, isInfixOf)
+import Data.List            (intercalate, isInfixOf, nub)
+import qualified  Data.Map as M
 import Context              (postContext)
 import Misc                 (TagsReader,
                              TagsAndAuthors,
@@ -237,3 +239,13 @@ convertAuthorsToLinks = do
                                       (tagsAndAuthors !! 2)
                                       "Все статьи автора"
     return ()
+
+categorisedTags :: Tags -> Tags -> [(String, [String])]
+categorisedTags cats tags = map (\(c, is) -> (c, nub $ concat $ step' is)) (tagsMap cats)
+  where rtags :: [(Identifier, [String])]
+        rtags = M.toList $ foldr step'' M.empty (tagsMap tags)
+        step'' :: (String, [Identifier]) -> M.Map Identifier [String] -> M.Map Identifier [String]
+        step'' (tag, ids) m = foldr (\i m' -> M.insertWith (++) i [tag] m') m ids
+
+        step' :: [Identifier] -> [[String]]
+        step' = map ((maybe [] id) . (flip lookup $ rtags))
