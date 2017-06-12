@@ -16,7 +16,8 @@ module Tags (
     convertTagsToLinks,
     convertCategoriesToLinks,
     convertAuthorsToLinks,
-    categorisedTags
+    showCategorised
+
 ) where
 
 import Data.List            (intercalate, isInfixOf, nub)
@@ -248,4 +249,13 @@ categorisedTags cats tags = map (\(c, is) -> (c, nub $ concat $ step' is)) (tags
         step'' (tag, ids) m = foldr (\i m' -> M.insertWith (++) i [tag] m') m ids
 
         step' :: [Identifier] -> [[String]]
-        step' = map ((maybe [] id) . (flip lookup $ rtags))
+        step' = nub . map ((maybe [] id) . (flip lookup $ rtags))
+
+showCategorised :: (String -> Identifier) -> (String -> Identifier) -> Tags -> Tags -> String
+showCategorised cat2Id tag2Id categories tags = concat (map showCategorised' cats)
+  where cats = categorisedTags categories tags
+        showCategorised' :: (String, [String]) -> String
+        showCategorised' (cat, tags) = renderHtml $ do
+            H.li $ do
+              H.p $ H.a ! A.href (toValue $ toFilePath $ cat2Id cat) $ H.preEscapedToHtml $ getRussianNameOfCategory cat
+              H.ul $ mapM_ (\t -> H.li $ H.a ! A.href (toValue $toFilePath $ tag2Id t) $ H.preEscapedToHtml t) tags
