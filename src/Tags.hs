@@ -16,7 +16,8 @@ module Tags (
     convertTagsToLinks,
     convertCategoriesToLinks,
     convertAuthorsToLinks,
-    showCategorised
+    showCategorised,
+    showAuthors
 
 ) where
 
@@ -210,6 +211,7 @@ convertSpecificTagsToLinks tagsAndAuthors specificTags aTitle =
             let taggedPostsContext = mconcat [ listField "posts" (postContext tagsAndAuthors) (return posts)
                                              , constField "title" title
                                              , constField "categories" (showCategorised categories tags)
+                                             , constField "authors" (showAuthors authors)
                                              , defaultContext
                                              ]
 
@@ -264,3 +266,10 @@ showCategorised categories tags = concat (map showCategorised' cats)
             H.li $ do
               H.p $ H.a ! A.href (toValue $ "/" </> (toFilePath $ cat2Id cat)) $ H.preEscapedToHtml $ getRussianNameOfCategory cat
               H.ul $ mapM_ (\t -> H.li $ H.a ! A.href (toValue $ "/" </> (toFilePath $ tag2Id t)) $ H.preEscapedToHtml t) tags
+
+showAuthors :: Tags -> String
+showAuthors tags = renderHtml $ do
+  H.li $ do
+    H.p  "Авторы"
+    H.ul $ mapM_ (\t -> H.li $ H.a ! A.href (toValue $ "/" </> (toFilePath $ (tagsMakeId tags) t)) $ H.preEscapedToHtml t) tags'
+  where tags' = map fst (tagsMap tags)

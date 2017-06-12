@@ -11,7 +11,7 @@ module IndexPage (
 ) where
 
 import Context              (postContext)
-import Tags                 (showCategorised)
+import Tags                 (showCategorised, showAuthors)
 import Misc                 (TagsReader, getRussianNameOfCategory)
 import Data.List            (intercalate)
 import Control.Monad.Reader
@@ -33,6 +33,7 @@ createIndexPage = do
             let indexContext = mconcat [ listField "posts" (postContext tagsAndAuthors) (return last7Posts)
                                        , constField "title" "Личный блог Льва Никитина"
                                        , constField "categories" (showCategorised categories tags)
+                                       , constField "authors" (showAuthors authors)
                                        , defaultContext
                                        ]
 

@@ -12,18 +12,21 @@ module Archive (
 
 import Context              (postContext)
 import Misc                 (TagsReader)
+import Tags                 (showCategorised, showAuthors)
 import Control.Monad.Reader
 import Hakyll
 
 createPageWithAllPosts :: TagsReader
 createPageWithAllPosts = do
-    tagsAndAuthors <- ask
+    tagsAndAuthors@[tags, categories, authors] <- ask
     lift $ create ["archive.html"] $ do
         route idRoute
         compile $ do
             allPosts <- recentFirst =<< loadAll "posts/**"
             let archiveContext = mconcat [ listField "posts" (postContext tagsAndAuthors) (return allPosts)
                                          , constField "title" "Архив статей"
+                                         , constField "categories" (showCategorised categories tags)
+                                         , constField "authors" (showAuthors authors)
                                          , defaultContext
                                          ]
 

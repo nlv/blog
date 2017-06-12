@@ -1,3 +1,17 @@
-<h1>$title$</h1>
+      <nav id="nav-left" class="parts-links">
+      </nav>
 
-$partial("templates/post-list.html")$
+      <main id="main-content">
+
+        <section id="news">
+          <h1>$title$</h1>
+          $partial("templates/post-list.html")$
+        </section>
+      </main>
+
+      <nav id="nav-right" class="parts-links">
+        <ul>
+          $categories$
+          $authors$
+        </ul>
+      </nav>
