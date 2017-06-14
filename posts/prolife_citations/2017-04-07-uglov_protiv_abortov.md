@@ -6,6 +6,7 @@ teaserText:  Аборт на фоне запланированного унич�
 teaserPhoto: /photos/uglov.jpg
 teaserPhotoAlt: Углов Ф.Г.
 hrefOrigin: https://vk.com/id397842830?w=wall-93739533_27345
+printed: yes
 ---
 
 <figure>
